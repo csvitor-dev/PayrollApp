@@ -1,4 +1,4 @@
-namespace Payroll.Application.Services;
+namespace Payroll.Application.Transactions;
 
 public interface ITransaction
 {
