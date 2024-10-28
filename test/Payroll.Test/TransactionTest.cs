@@ -1,3 +1,8 @@
+using Payroll.Application.Transactions.Add;
+using Payroll.Application.Contracts.Classifications;
+using Payroll.Application.Contracts.Schedules;
+
+using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 using Payroll.Core.Data;
 
@@ -14,12 +19,14 @@ public class TransactionTest
         t.Execute();
 
         Employee e = PayrollDB.GetEmployee(id);
-        Assert.AreEqual("Bob", e.Name);
+        Assert.That(e.Name, Is.EqualTo("Bob"));
 
         IPaymentClassification pc = e.Classification;
         Assert.IsTrue(pc is SalariedClassification);
-        SalariedClassification sc = pc as SalariedClassification;
-        Assert.AreEqual(1000.00, sc.Salary, .001);
+
+        SalariedClassification sc = (pc as SalariedClassification)!;
+        Assert.That(sc.Salary, Is.EqualTo(1000.00));
+        
         IPaymentSchedule ps = e.Schedule;
         Assert.IsTrue(ps is MonthlySchedule);
 
