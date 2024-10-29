@@ -33,4 +33,28 @@ public class TransactionTest
         IPaymentMethod pm = e.Method;
         Assert.IsTrue(pm is HoldMethod);
     }
+
+    [Test]
+    public void Test_AddHourlyEmployee()
+    {
+        int id = 2;
+        AddHourlyEmployee t = new(id, "Carl", "Home", 5.5);
+        t.Execute();
+
+        Employee e = PayrollDB.GetEmployee(id);
+        Assert.That(e.Name, Is.EqualTo("Carl"));
+
+        IPaymentClassification pc = e.Classification;
+        Assert.IsTrue(pc is HourlyClassification);
+
+        HourlyClassification hc = (pc as HourlyClassification)!;
+        Assert.That(hc.HourlyRate, Is.EqualTo(5.5));
+        Assert.That(hc.TimeCards.Count, Is.EqualTo(0));
+
+        IPaymentSchedule ps = e.Schedule;
+        Assert.IsTrue(ps is WeeklySchedule);
+
+        IPaymentMethod pm = e.Method;
+        Assert.IsTrue(pm is HoldMethod);
+    }
 }
