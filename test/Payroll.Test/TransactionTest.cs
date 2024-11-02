@@ -58,22 +58,23 @@ public class TransactionTest
         Assert.IsTrue(pm is HoldMethod);
     }
 
-    public void Test_AddCommisionedEmployee()
+    [Test]
+    public void Test_AddCommissionedEmployee()
     {
         int id = 3;
-        AddCommisionedEmployee t = new(id, "Daniel", "Home", 1000, 4.5);
+        AddCommissionedEmployee t = new(id, "Daniel", "Home", 1000, 4.5);
         t.Execute();
 
         Employee e = PayrollDB.GetEmployee(id);
         Assert.That(e.Name, Is.EqualTo("Daniel"));
 
         IPaymentClassification pc = e.Classification;
-        Assert.IsTrue(pc is CommisionedClassification);
+        Assert.IsTrue(pc is CommissionedClassification);
 
         CommissionedClassification cc = (pc as CommissionedClassification)!;
         Assert.That(cc.Salary, Is.EqualTo(1000));
-        Assert.That(cc.CommissionRate, Is.EqualTo(5.5));
-        Assert.That(cc.SalesReciepts.Length, Is.EqualTo(0));
+        Assert.That(cc.CommissionRate, Is.EqualTo(4.5));
+        Assert.That(cc.SalesReciepts.Count, Is.EqualTo(0));
 
         IPaymentSchedule ps = e.Schedule;
         Assert.IsTrue(ps is BiweeklySchedule);
