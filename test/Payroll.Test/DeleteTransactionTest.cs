@@ -1,4 +1,6 @@
 using Payroll.Application.Transactions.Add;
+using Payroll.Application.Transactions.Delete;
+
 using Payroll.Core.Data;
 using Payroll.Core.Entities;
 
@@ -10,17 +12,17 @@ public class DeleteTransactionTest
     [Test]
     public void Test_DeleteEmployee()
     {
-        int empId = 4;
-        AddCommissionedEmployee t = new(empId, "Bill", "Home", 2500, 3.2);
+        int id = 4;
+        AddCommissionedEmployee t = new(id, "Bill", "Home", 2500, 3.2);
         t.Execute();
 
-        Employee e = PayrollDB.GetEmployee(empId);
+        Employee? e = PayrollDB.GetEmployee(id);
         Assert.IsNotNull(e);
 
-        DeleteEmployeeTransaction dt = new(empId);
+        DeleteEmployeeTransaction dt = new(id);
         dt.Execute();
 
-        e = PayrollDB.GetEmployee(empId);
+        e = PayrollDB.GetEmployee(id);
         Assert.IsNull(e);
     }
 }

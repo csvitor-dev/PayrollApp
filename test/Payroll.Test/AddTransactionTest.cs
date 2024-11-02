@@ -18,7 +18,7 @@ public class AddTransactionTest
         AddSalariedEmployee t = new(id, "Bob", "Home", 1000.00);
         t.Execute();
 
-        Employee e = PayrollDB.GetEmployee(id);
+        Employee e = PayrollDB.GetEmployee(id)!;
         Assert.That(e.Name, Is.EqualTo("Bob"));
 
         IPaymentClassification pc = e.Classification;
@@ -41,7 +41,7 @@ public class AddTransactionTest
         AddHourlyEmployee t = new(id, "Carl", "Home", 5.5);
         t.Execute();
 
-        Employee e = PayrollDB.GetEmployee(id);
+        Employee e = PayrollDB.GetEmployee(id)!;
         Assert.That(e.Name, Is.EqualTo("Carl"));
 
         IPaymentClassification pc = e.Classification;
@@ -65,7 +65,7 @@ public class AddTransactionTest
         AddCommissionedEmployee t = new(id, "Daniel", "Home", 1000, 4.5);
         t.Execute();
 
-        Employee e = PayrollDB.GetEmployee(id);
+        Employee e = PayrollDB.GetEmployee(id)!;
         Assert.That(e.Name, Is.EqualTo("Daniel"));
 
         IPaymentClassification pc = e.Classification;
