@@ -9,7 +9,7 @@ using Payroll.Core.Data;
 namespace Payroll.Test;
 
 [TestFixture]
-public class TransactionTest
+public class AddTransactionTest
 {
     [Test]
     public void Test_AddSalariedEmployee()
