@@ -35,4 +35,18 @@ public class TimeCardTransactionTest
         Assert.IsNotNull(tc);
         Assert.That(tc.Hours, Is.EqualTo(8.0));
     }
+    
+    [Test]
+    public void Test_TimeCardTransactionFail()
+    {
+        int id = 6;
+        AddSalariedEmployee t = new(id, "Jones", "Home", 1200.00);
+        t.Execute();
+
+        DateTime date = new(2007, 10, 23);
+        TimeCardTransaction tct = new(
+            id, date, 8.0
+        );
+        Assert.Throws<InvalidOperationException>(() => tct.Execute());
+    }
 }
