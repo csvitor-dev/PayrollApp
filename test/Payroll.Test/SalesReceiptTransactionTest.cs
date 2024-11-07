@@ -33,4 +33,17 @@ public class SalesReceiptTransactionTest
         Assert.IsNotNull(sale);
         Assert.That(sale.Amount, Is.EqualTo(250.50));
     }
+
+    [Test]
+    public void Test_SalesReceiptTransactionFail()
+    {
+        int id = 8;
+        AddSalariedEmployee t = new(id, "Eliot", "Home", 1890.00);
+        t.Execute();
+        
+        DateTime date = new(2009, 12, 15);
+        SalesReceiptTransaction srt = new(id, date, 500.50);
+        
+        Assert.Throws<InvalidOperationException>(() => srt.Execute());
+    }
 }
