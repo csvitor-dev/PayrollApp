@@ -1,7 +1,6 @@
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Assets;
 using Payroll.Application.Contracts.Classifications;
-
 using Payroll.Core.Contracts;
 using Payroll.Core.Data;
 using Payroll.Core.Entities;
@@ -19,9 +18,7 @@ public class TimeCardTransactionTest
         t.Execute();
 
         DateTime date = new(2005, 7, 31);
-        TimeCardTransaction tct = new(
-            id, date, 8.0
-        );
+        TimeCardTransaction tct = new(id, date, 8.0);
         tct.Execute();
 
         Employee? e = PayrollDB.GetEmployee(id);
@@ -35,7 +32,7 @@ public class TimeCardTransactionTest
         Assert.IsNotNull(tc);
         Assert.That(tc.Hours, Is.EqualTo(8.0));
     }
-    
+
     [Test]
     public void Test_TimeCardTransactionFail()
     {
