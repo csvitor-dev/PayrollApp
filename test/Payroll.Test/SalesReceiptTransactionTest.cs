@@ -23,10 +23,10 @@ public class SalesReceiptTransactionTest
         srt.Execute();
 
         Employee? e = PayrollDB.GetEmployee(id);
-        Assert.IsNotNull(e);
+        Assert.That(e, Is.Not.Null);
 
         IPaymentClassification pc = e.Classification;
-        Assert.IsTrue(pc is CommissionedClassification);
+        Assert.That(pc is CommissionedClassification, Is.True);
         CommissionedClassification cc = (pc as CommissionedClassification)!;
 
         SalesReceipt? sale = cc.GetSalesReceipt(date);

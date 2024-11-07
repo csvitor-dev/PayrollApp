@@ -22,14 +22,14 @@ public class TimeCardTransactionTest
         tct.Execute();
 
         Employee? e = PayrollDB.GetEmployee(id);
-        Assert.IsNotNull(e);
+        Assert.That(e, Is.Not.Null);
 
         IPaymentClassification pc = e.Classification;
-        Assert.IsTrue(pc is HourlyClassification);
+        Assert.That(pc is HourlyClassification, Is.True);
         HourlyClassification hc = (pc as HourlyClassification)!;
 
         TimeCard? tc = hc.GetTimeCard(date);
-        Assert.IsNotNull(tc);
+        Assert.That(tc, Is.Not.Null);
         Assert.That(tc.Hours, Is.EqualTo(8.0));
     }
 

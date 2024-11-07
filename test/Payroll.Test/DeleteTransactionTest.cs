@@ -17,12 +17,12 @@ public class DeleteTransactionTest
         t.Execute();
 
         Employee? e = PayrollDB.GetEmployee(id);
-        Assert.IsNotNull(e);
+        Assert.That(e, Is.Not.Null);
 
         DeleteEmployeeTransaction dt = new(id);
         dt.Execute();
 
         e = PayrollDB.GetEmployee(id);
-        Assert.IsNull(e);
+        Assert.That(e, Is.Null);
     }
 }

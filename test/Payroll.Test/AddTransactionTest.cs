@@ -22,16 +22,16 @@ public class AddTransactionTest
         Assert.That(e.Name, Is.EqualTo("Bob"));
 
         IPaymentClassification pc = e.Classification;
-        Assert.IsTrue(pc is SalariedClassification);
+        Assert.That(pc is SalariedClassification, Is.True);
 
         SalariedClassification sc = (pc as SalariedClassification)!;
         Assert.That(sc.Salary, Is.EqualTo(1000.00));
         
         IPaymentSchedule ps = e.Schedule;
-        Assert.IsTrue(ps is MonthlySchedule);
+        Assert.That(ps is MonthlySchedule, Is.True);
 
         IPaymentMethod pm = e.Method;
-        Assert.IsTrue(pm is HoldMethod);
+        Assert.That(pm is HoldMethod, Is.True);
     }
 
     [Test]
@@ -45,17 +45,17 @@ public class AddTransactionTest
         Assert.That(e.Name, Is.EqualTo("Carl"));
 
         IPaymentClassification pc = e.Classification;
-        Assert.IsTrue(pc is HourlyClassification);
+        Assert.That(pc is HourlyClassification, Is.True);
 
         HourlyClassification hc = (pc as HourlyClassification)!;
         Assert.That(hc.HourlyRate, Is.EqualTo(5.5));
         Assert.That(hc.TimeCards.Count, Is.EqualTo(0));
 
         IPaymentSchedule ps = e.Schedule;
-        Assert.IsTrue(ps is WeeklySchedule);
+        Assert.That(ps is WeeklySchedule, Is.True);
 
         IPaymentMethod pm = e.Method;
-        Assert.IsTrue(pm is HoldMethod);
+        Assert.That(pm is HoldMethod, Is.True);
     }
 
     [Test]
@@ -69,17 +69,17 @@ public class AddTransactionTest
         Assert.That(e.Name, Is.EqualTo("Daniel"));
 
         IPaymentClassification pc = e.Classification;
-        Assert.IsTrue(pc is CommissionedClassification);
+        Assert.That(pc is CommissionedClassification, Is.True);
 
         CommissionedClassification cc = (pc as CommissionedClassification)!;
         Assert.That(cc.Salary, Is.EqualTo(1000));
         Assert.That(cc.CommissionRate, Is.EqualTo(4.5));
-        Assert.That(cc.SalesReceipts.Count, Is.EqualTo(0));
+        Assert.That(cc.SalesReceipts, Is.Empty);
 
         IPaymentSchedule ps = e.Schedule;
-        Assert.IsTrue(ps is BiweeklySchedule);
+        Assert.That(ps is BiweeklySchedule, Is.True);
 
         IPaymentMethod pm = e.Method;
-        Assert.IsTrue(pm is HoldMethod);
+        Assert.That(pm is HoldMethod, Is.True);
     }
 }
