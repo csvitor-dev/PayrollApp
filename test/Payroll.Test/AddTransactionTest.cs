@@ -74,7 +74,7 @@ public class AddTransactionTest
         CommissionedClassification cc = (pc as CommissionedClassification)!;
         Assert.That(cc.Salary, Is.EqualTo(1000));
         Assert.That(cc.CommissionRate, Is.EqualTo(4.5));
-        Assert.That(cc.SalesReciepts.Count, Is.EqualTo(0));
+        Assert.That(cc.SalesReceipts.Count, Is.EqualTo(0));
 
         IPaymentSchedule ps = e.Schedule;
         Assert.IsTrue(ps is BiweeklySchedule);
