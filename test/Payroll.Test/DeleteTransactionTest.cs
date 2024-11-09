@@ -13,7 +13,7 @@ public class DeleteTransactionTest
     public void Test_DeleteEmployee()
     {
         int id = 4;
-        AddCommissionedEmployee t = new(id, "Bill", "Home", 2500, 3.2);
+        AddCommissionedEmployee t = new(id, "Terry", "Home", 2500, 3.2);
         t.Execute();
 
         Employee? e = PayrollDb.GetEmployee(id);

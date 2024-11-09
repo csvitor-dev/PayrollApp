@@ -1,6 +1,7 @@
 using Payroll.Application.Contracts.Affiliations;
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Assets;
+using Payroll.Application.Transactions.Delete;
 using Payroll.Core.Data;
 using Payroll.Core.Entities;
 
@@ -21,7 +22,7 @@ public class ServiceChargeTransactionTest
 
         UnionAffiliation af = new();
         e.Affiliation = af;
-        int memberId = 86;
+        int memberId = 86; // Maxwell Smart
         PayrollDb.AddUnionMember(memberId, e);
 
         DateTime date = new(2005, 8, 8);
