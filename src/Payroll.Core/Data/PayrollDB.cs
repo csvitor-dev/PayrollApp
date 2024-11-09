@@ -2,20 +2,26 @@ using Payroll.Core.Entities;
 
 namespace Payroll.Core.Data;
 
-public class PayrollDB
+public static class PayrollDb
 {
-    private static readonly Dictionary<int, Employee> _employees = [];
+    private static readonly Dictionary<int, Employee> s_employees = [];
+    private static readonly Dictionary<int, Employee> s_affiliations = [];
 
+    // Employee Table
     public static void AddEmployee(int id, Employee employee)
-        => _employees.Add(id, employee);
+        => s_employees.Add(id, employee);
+    public static Employee? GetEmployee(int empId) 
+        => s_employees.GetValueOrDefault(empId);
+    public static void DeleteEmployee(int empId)
+        => s_employees.Remove(empId);
 
-    public static Employee? GetEmployee(int empID) 
+    // Affiliation Table
+    public static void AddUnionMember(int memberId, Employee employee)
     {
-        if (_employees.ContainsKey(empID) == false)
-            return null;
-        return _employees[empID];
+        if (s_employees.ContainsKey(employee.ID) is false)
+            throw new InvalidOperationException("Employee does not exist");
+        s_affiliations.Add(memberId, employee);
     }
-
-    public static void DeleteEmployee(int empID)
-        => _employees.Remove(empID);
+    public static Employee? GetUnionMember(int memberId)
+        => s_affiliations.GetValueOrDefault(memberId);
 }

@@ -7,6 +7,7 @@ public class Employee
     public int ID { get; }
     public string Name { get; set; } = string.Empty;
     public string Address { get; set; } = string.Empty;
+    public IAffiliation Affiliation { get; set; } = null!;
     public IPaymentClassification Classification { get; set; } = null!;
     public IPaymentSchedule Schedule { get; set; } = null!;
     public IPaymentMethod Method { get; set; } = null!;
