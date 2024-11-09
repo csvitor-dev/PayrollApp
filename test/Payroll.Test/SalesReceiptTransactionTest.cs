@@ -22,7 +22,7 @@ public class SalesReceiptTransactionTest
         SalesReceiptTransaction srt = new(id, date, 250.50);
         srt.Execute();
 
-        Employee? e = PayrollDB.GetEmployee(id);
+        Employee? e = PayrollDb.GetEmployee(id);
         Assert.That(e, Is.Not.Null);
 
         IPaymentClassification pc = e.Classification;

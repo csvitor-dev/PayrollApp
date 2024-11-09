@@ -8,7 +8,7 @@ public class SalesReceiptTransaction(int id, DateTime date, double amount) : ITr
 {
     public void Execute()
     {
-        Employee? e = PayrollDB.GetEmployee(id);
+        Employee? e = PayrollDb.GetEmployee(id);
         
         if (e is null) 
             throw new InvalidOperationException("Employee not found");

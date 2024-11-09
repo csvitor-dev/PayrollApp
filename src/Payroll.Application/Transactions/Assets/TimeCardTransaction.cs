@@ -7,7 +7,7 @@ public class TimeCardTransaction(int id, DateTime date, double hours) : ITransac
 {
     public void Execute()
     {
-        var e = PayrollDB.GetEmployee(id);
+        var e = PayrollDb.GetEmployee(id);
 
         if (e is null) throw new InvalidOperationException("No such employee");
 

@@ -16,13 +16,13 @@ public class DeleteTransactionTest
         AddCommissionedEmployee t = new(id, "Bill", "Home", 2500, 3.2);
         t.Execute();
 
-        Employee? e = PayrollDB.GetEmployee(id);
+        Employee? e = PayrollDb.GetEmployee(id);
         Assert.That(e, Is.Not.Null);
 
         DeleteEmployeeTransaction dt = new(id);
         dt.Execute();
 
-        e = PayrollDB.GetEmployee(id);
+        e = PayrollDb.GetEmployee(id);
         Assert.That(e, Is.Null);
     }
 }

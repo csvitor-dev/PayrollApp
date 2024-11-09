@@ -21,7 +21,7 @@ public class TimeCardTransactionTest
         TimeCardTransaction tct = new(id, date, 8.0);
         tct.Execute();
 
-        Employee? e = PayrollDB.GetEmployee(id);
+        Employee? e = PayrollDb.GetEmployee(id);
         Assert.That(e, Is.Not.Null);
 
         IPaymentClassification pc = e.Classification;
