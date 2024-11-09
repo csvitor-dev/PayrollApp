@@ -8,11 +8,8 @@ public class AddCommissionedEmployee
     (int id, string name, string address, double salary, double commissionRate) 
     : AddEmployeeTransaction(id, name, address)
 {
-    private readonly double _salary = salary;
-    private readonly double _commissionedRate = commissionRate;
-
     protected override IPaymentClassification MakeClassification()
-        => new CommissionedClassification(_salary, _commissionedRate);
+        => new CommissionedClassification(salary, commissionRate);
 
     protected override IPaymentSchedule MakeSchedule()
         => new BiweeklySchedule();

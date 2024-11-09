@@ -8,10 +8,8 @@ public class AddSalariedEmployee
     (int id, string name, string address, double salary) 
     : AddEmployeeTransaction(id, name, address)
 {
-    private readonly double _salary = salary;
-
     protected override IPaymentClassification MakeClassification()
-        => new SalariedClassification(_salary);
+        => new SalariedClassification(salary);
 
     protected override IPaymentSchedule MakeSchedule()
         => new MonthlySchedule();

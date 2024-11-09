@@ -8,10 +8,6 @@ namespace Payroll.Application.Transactions.Add;
 public abstract class AddEmployeeTransaction(int empID, string name, string address) 
     : ITransaction
 {
-    private readonly int _empID = empID;
-    private readonly string _name = name;
-    private readonly string _address = address;
-
     protected abstract IPaymentClassification MakeClassification(); // FACTORY METHOD
     protected abstract IPaymentSchedule MakeSchedule(); // FACTORY METHOD
 
@@ -21,11 +17,11 @@ public abstract class AddEmployeeTransaction(int empID, string name, string addr
         IPaymentSchedule ps = MakeSchedule();
         IPaymentMethod pm = new HoldMethod();
 
-        Employee e = new(_empID, _name, _address);
+        Employee e = new(empID, name, address);
         e.Classification = pc;
         e.Schedule = ps;
         e.Method = pm;
 
-        PayrollDB.AddEmployee(_empID, e);
+        PayrollDb.AddEmployee(empID, e);
     }
 }

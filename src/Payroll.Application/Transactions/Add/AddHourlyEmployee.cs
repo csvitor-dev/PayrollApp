@@ -9,10 +9,8 @@ public class AddHourlyEmployee
     (int id, string name, string address, double hourlyRate)
     : AddEmployeeTransaction(id, name, address)
 {
-    private readonly double _hourlyRate = hourlyRate;
-
     protected override IPaymentClassification MakeClassification()
-        => new HourlyClassification(_hourlyRate);
+        => new HourlyClassification(hourlyRate);
 
     protected override IPaymentSchedule MakeSchedule()
         => new WeeklySchedule();
