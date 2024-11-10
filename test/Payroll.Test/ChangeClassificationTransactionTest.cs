@@ -1,6 +1,7 @@
 using Payroll.Application.Contracts.Classifications;
 using Payroll.Application.Contracts.Schedules;
 using Payroll.Application.Transactions.Add;
+using Payroll.Application.Transactions.Change.Classification;
 using Payroll.Core.Contracts;
 using Payroll.Core.Data;
 using Payroll.Core.Entities;
@@ -21,14 +22,19 @@ public class ChangeClassificationTransactionTest
         cht.Execute();
         Employee? e = PayrollDb.GetEmployee(id);
         IPaymentClassification? pc = e?.Classification;
-        IPaymentSchedule? ps = e?.Schedule;
         HourlyClassification? hc = pc as HourlyClassification;
+        IPaymentSchedule? ps = e?.Schedule;
         
         Assert.Multiple(() =>
         {
             Assert.That(e, Is.Not.Null);
             Assert.That(pc, Is.Not.Null);
             Assert.That(pc is HourlyClassification, Is.True);
+            Assert.That(hc, Is.Not.Null);
+        });
+        
+        Assert.Multiple(() =>
+        {
             Assert.That(hc.HourlyRate, Is.EqualTo(27.52));
             Assert.That(ps is WeeklySchedule, Is.True);
         });
