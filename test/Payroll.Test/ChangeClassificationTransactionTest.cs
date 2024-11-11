@@ -71,4 +71,35 @@ public class ChangeClassificationTransactionTest
             Assert.That(ps is MonthlySchedule, Is.True);
         });
     }
+
+    [Test]
+    public void Test_ChangeCommissionedTransaction()
+    {
+        int id = 14;
+        AddSalariedEmployee t = new(id, "Erick", "Home", 2045.70);
+        ChangeCommissionedTransaction cct = new(id, 12.15, 1905.00);
+        
+        t.Execute();
+        cct.Execute();
+        Employee? e = PayrollDb.GetEmployee(id);
+        IPaymentClassification? pc = e?.Classification;
+        CommissionedClassification? cc = pc as CommissionedClassification;
+        IPaymentSchedule? ps = e?.Schedule;
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(e, Is.Not.Null);
+            Assert.That(pc, Is.Not.Null);
+            Assert.That(pc is CommissionedClassification, Is.True);
+            Assert.That(cc, Is.Not.Null);
+            Assert.That(ps, Is.Not.Null);
+        });
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(cc.CommissionRate, Is.EqualTo(12.15));
+            Assert.That(cc.Salary, Is.EqualTo(1905.00));
+            Assert.That(ps is BiweeklySchedule, Is.True);
+        });
+    }
 }
