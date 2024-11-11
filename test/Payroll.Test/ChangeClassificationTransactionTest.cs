@@ -31,12 +31,43 @@ public class ChangeClassificationTransactionTest
             Assert.That(pc, Is.Not.Null);
             Assert.That(pc is HourlyClassification, Is.True);
             Assert.That(hc, Is.Not.Null);
+            Assert.That(ps, Is.Not.Null);
         });
         
         Assert.Multiple(() =>
         {
             Assert.That(hc.HourlyRate, Is.EqualTo(27.52));
             Assert.That(ps is WeeklySchedule, Is.True);
+        });
+    }
+    
+    [Test]
+    public void Test_ChangeSalariedTransaction()
+    {
+        int id = 13;
+        AddHourlyEmployee t = new(id, "Kelvin", "Home", 2.7);
+        ChangeSalariedTransaction cst = new(id, 1750.85);
+        
+        t.Execute();
+        cst.Execute();
+        Employee? e = PayrollDb.GetEmployee(id);
+        IPaymentClassification? pc = e?.Classification;
+        SalariedClassification? sc = pc as SalariedClassification;
+        IPaymentSchedule? ps = e?.Schedule;
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(e, Is.Not.Null);
+            Assert.That(pc, Is.Not.Null);
+            Assert.That(pc is SalariedClassification, Is.True);
+            Assert.That(sc, Is.Not.Null);
+            Assert.That(ps, Is.Not.Null);
+        });
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(sc.Salary, Is.EqualTo(1750.85));
+            Assert.That(ps is MonthlySchedule, Is.True);
         });
     }
 }
