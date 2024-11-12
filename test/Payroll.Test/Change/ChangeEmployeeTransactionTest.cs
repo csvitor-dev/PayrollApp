@@ -3,7 +3,7 @@ using Payroll.Application.Transactions.Change;
 using Payroll.Core.Data;
 using Payroll.Core.Entities;
 
-namespace Payroll.Test;
+namespace Payroll.Test.Change;
 
 [TestFixture]
 public class ChangeEmployeeTransactionTest

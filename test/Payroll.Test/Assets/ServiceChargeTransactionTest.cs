@@ -5,7 +5,7 @@ using Payroll.Application.Transactions.Delete;
 using Payroll.Core.Data;
 using Payroll.Core.Entities;
 
-namespace Payroll.Test;
+namespace Payroll.Test.Assets;
 
 [TestFixture]
 public class ServiceChargeTransactionTest
