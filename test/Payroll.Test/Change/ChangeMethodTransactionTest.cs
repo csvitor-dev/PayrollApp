@@ -1,4 +1,6 @@
+using Payroll.Application.Contracts.Classifications;
 using Payroll.Application.Transactions.Add;
+using Payroll.Application.Transactions.Change.Method;
 using Payroll.Core.Contracts;
 using Payroll.Core.Data;
 using Payroll.Core.Entities;
