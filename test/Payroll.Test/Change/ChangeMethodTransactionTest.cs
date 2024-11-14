@@ -38,4 +38,31 @@ public class ChangeMethodTransactionTest
             Assert.That(dm.Account, Is.EqualTo(account));
         });
     }
+
+    [Test]
+    public void Test_ChangeMailTransaction()
+    {
+        int id = 16;
+        AddSalariedEmployee t = new(id, "Philips", "Home", 2550.50);
+        string address = "St. Edson";
+        ChangeMailTransaction cmt = new(id, address);
+        
+        t.Execute();
+        cmt.Execute();
+        Employee? e = PayrollDb.GetEmployee(id);
+        IPaymentMethod? pm = e?.Method;
+        MailMethod? mm = pm as MailMethod;
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(e, Is.Not.Null);
+            Assert.That(pm, Is.Not.Null);
+            Assert.That(mm, Is.Not.Null);
+        });
+        Assert.Multiple(() =>
+        {
+            Assert.That(pm is MailMethod, Is.True);
+            Assert.That(mm.Address, Is.EqualTo(address));
+        });
+    }
 }
