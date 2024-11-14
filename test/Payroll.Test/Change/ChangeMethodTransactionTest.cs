@@ -65,4 +65,24 @@ public class ChangeMethodTransactionTest
             Assert.That(mm.Address, Is.EqualTo(address));
         });
     }
+
+    [Test]
+    public void Test_ChangeHoldTransaction()
+    {
+        int id = 17;
+        AddHourlyEmployee t = new(id, "Victor", "Home", 13.1);
+        ChangeHoldTransaction cht = new(id);
+        
+        t.Execute();
+        cht.Execute();
+        Employee? e = PayrollDb.GetEmployee(id);
+        IPaymentMethod? pm = e?.Method;
+        
+        Assert.Multiple(() =>
+        {
+            Assert.That(e, Is.Not.Null);
+            Assert.That(pm, Is.Not.Null);
+        });
+        Assert.That(pm is HoldMethod, Is.True);
+    }
 }
