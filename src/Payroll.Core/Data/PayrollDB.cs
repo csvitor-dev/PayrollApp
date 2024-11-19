@@ -10,8 +10,10 @@ public static class PayrollDb
     // Employee Table
     public static void AddEmployee(int id, Employee employee)
         => s_employees.Add(id, employee);
-    public static Employee? GetEmployee(int empId) 
+
+    public static Employee? GetEmployee(int empId)
         => s_employees.GetValueOrDefault(empId);
+
     public static void DeleteEmployee(int empId)
         => s_employees.Remove(empId);
 
@@ -22,6 +24,10 @@ public static class PayrollDb
             throw new InvalidOperationException("Employee does not exist");
         s_affiliations.Add(memberId, employee);
     }
+
     public static Employee? GetUnionMember(int memberId)
         => s_affiliations.GetValueOrDefault(memberId);
+
+    public static void RemoveUnionMember(int memberId)
+        => s_affiliations.Remove(memberId);
 }
