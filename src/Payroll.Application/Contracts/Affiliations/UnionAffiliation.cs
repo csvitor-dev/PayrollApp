@@ -22,4 +22,9 @@ public class UnionAffiliation : IAffiliation
         => _charges.Add(charge);
     public ServiceCharge? GetServiceCharge(DateTime date)
         => _charges.FirstOrDefault(c => c.Date == date);
+
+    public double CalculateDeductions(Paycheck paycheck)
+    {
+        return default;
+    }
 }
