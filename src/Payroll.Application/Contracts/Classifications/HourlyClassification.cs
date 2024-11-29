@@ -12,4 +12,9 @@ public class HourlyClassification(double hourlyRate) : IPaymentClassification
         => TimeCards.Add(card);
     public TimeCard? GetTimeCard(DateTime date)
         => TimeCards.FirstOrDefault(t => t.Date == date);
+
+    public double CalculatePay(Paycheck paycheck)
+    {
+        return default;
+    }
 }

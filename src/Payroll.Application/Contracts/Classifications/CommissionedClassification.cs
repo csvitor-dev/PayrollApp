@@ -13,4 +13,9 @@ public class CommissionedClassification(double salary, double commissionRate) : 
         => SalesReceipts.Add(sales);
     public SalesReceipt? GetSalesReceipt(DateTime date)
         => SalesReceipts.FirstOrDefault(s => s.Date == date);
+
+    public double CalculatePay(Paycheck paycheck)
+    {
+        return default;
+    }
 }
