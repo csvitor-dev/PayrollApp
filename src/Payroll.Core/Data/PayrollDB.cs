@@ -13,6 +13,9 @@ public static class PayrollDb
 
     public static Employee? GetEmployee(int empId)
         => s_employees.GetValueOrDefault(empId);
+    
+    public static IList<Employee> GetEmployees()
+        => s_employees.Values.ToList();
 
     public static void DeleteEmployee(int empId)
         => s_employees.Remove(empId);
