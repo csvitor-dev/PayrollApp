@@ -4,16 +4,16 @@ namespace Payroll.Test.Payday;
 
 public class PaycheckValidator
 {
-    public static void Validate(Paycheck? pc, DateTime payDate, double pay)
+    public static void Validate(Paycheck? paycheck, DateTime payDate, double pay)
     {
-        Assert.That(pc, Is.Not.Null);
+        Assert.That(paycheck, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(pc.PayDate, Is.EqualTo(payDate));
-            Assert.That(pc.GrossPay, Is.EqualTo(pay));
-            Assert.That(pc.GetField("Disposition"), Is.EqualTo("Hold"));
-            Assert.That(pc.Deductions, Is.EqualTo(0.0));
-            Assert.That(pc.NetPay, Is.EqualTo(pay));
+            Assert.That(paycheck.PayDate, Is.EqualTo(payDate));
+            Assert.That(paycheck.GrossPay, Is.EqualTo(pay));
+            Assert.That(paycheck.GetField("Disposition"), Is.EqualTo("Hold"));
+            Assert.That(paycheck.Deductions, Is.EqualTo(0.0));
+            Assert.That(paycheck.NetPay, Is.EqualTo(pay));
         });
     }
 }
