@@ -10,9 +10,14 @@ public class HourlyClassification(double hourlyRate) : IPaymentClassification
 
     public void AddTimeCard(TimeCard card)
         => TimeCards.Add(card);
+
     public TimeCard? GetTimeCard(DateTime date)
         => TimeCards.FirstOrDefault(t => t.Date == date);
 
     public double CalculatePay(Paycheck paycheck)
-        => default; // because without time cards, your payment is 0
+    {
+        var totalHours = TimeCards.Sum(t => t.Hours);
+
+        return totalHours * HourlyRate;
+    }
 }
