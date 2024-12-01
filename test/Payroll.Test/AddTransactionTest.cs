@@ -1,5 +1,6 @@
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Contracts.Classifications;
+using Payroll.Application.Contracts.Methods;
 using Payroll.Application.Contracts.Schedules;
 
 using Payroll.Core.Contracts;

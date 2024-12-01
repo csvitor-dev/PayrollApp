@@ -3,6 +3,7 @@ using Payroll.Core.Contracts;
 using Payroll.Core.Data;
 using Payroll.Core.Entities;
 using Payroll.Application.Contracts.Classifications;
+using Payroll.Application.Contracts.Methods;
 
 namespace Payroll.Application.Transactions.Add;
 

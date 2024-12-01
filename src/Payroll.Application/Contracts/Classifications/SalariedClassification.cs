@@ -7,8 +7,6 @@ public class SalariedClassification(double salary) : IPaymentClassification
 {
     public double Salary { get; set; } = salary;
     
-    public double CalculatePay(Paycheck paycheck)
-    {
-        return salary;
-    }
+    public double CalculatePay(Paycheck paycheck) 
+        => Salary;
 }
