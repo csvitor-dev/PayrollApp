@@ -2,7 +2,7 @@ using Payroll.Core.Entities;
 
 namespace Payroll.Test.Payday;
 
-public class PaycheckValidator
+public static class PaycheckValidator
 {
     public static void Validate(Paycheck? paycheck, DateTime payDate, double pay)
     {

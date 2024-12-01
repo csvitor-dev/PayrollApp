@@ -4,8 +4,6 @@ namespace Payroll.Application.Contracts.Schedules;
 
 public class WeeklySchedule : IPaymentSchedule
 {
-    public bool IsPayDate(DateTime date)
-    {
-        return default;
-    }
+    public bool IsPayDate(DateTime date) 
+        => date.DayOfWeek == DayOfWeek.Friday;
 }

@@ -14,7 +14,5 @@ public class HourlyClassification(double hourlyRate) : IPaymentClassification
         => TimeCards.FirstOrDefault(t => t.Date == date);
 
     public double CalculatePay(Paycheck paycheck)
-    {
-        return default;
-    }
+        => default; // because without time cards, your payment is 0
 }
