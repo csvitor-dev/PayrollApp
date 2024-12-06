@@ -14,10 +14,15 @@ public class HourlyClassification(double hourlyRate) : IPaymentClassification
     public TimeCard? GetTimeCard(DateTime date)
         => TimeCards.FirstOrDefault(t => t.Date == date);
 
-    public double CalculatePay(Paycheck paycheck)
-    {
-        var totalHours = TimeCards.Sum(t => t.Hours);
+    public double CalculatePay(Paycheck paycheck) 
+        => TimeCards.Sum(CalculatePayForTimeCard);
 
-        return totalHours * HourlyRate;
+    private double CalculatePayForTimeCard(TimeCard card)
+    {
+        var overtime = Math.Max(0.0, card.Hours - 8.0);
+        var normal = card.Hours - overtime;
+
+        return normal * HourlyRate +
+               overtime * 1.5 * HourlyRate;
     }
 }
