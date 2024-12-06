@@ -56,4 +56,21 @@ public class PayHourlyEmployeeTest
         
         PaycheckValidator.Validate(pc, payDate, (8 + 1.5) * 24.0);
     }
+
+    [Test]
+    public void Test_PaySingleHourlyEmployee_OnWrongDate()
+    {
+        int id = 25;
+        AddHourlyEmployee t = new(id, "Jason", "Home", 19.05);
+        DateTime payDate = new(2001, 11, 8);
+        TimeCardTransaction tc = new(id, payDate, 9.0);
+        PaydayTransaction pt = new(payDate);
+        
+        t.Execute();
+        tc.Execute();
+        pt.Execute();
+        var pc = pt.GetPaycheck(id);
+        
+        Assert.That(pc, Is.Null);
+    }
 }
