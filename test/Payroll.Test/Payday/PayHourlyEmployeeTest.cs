@@ -92,4 +92,24 @@ public class PayHourlyEmployeeTest
         
         PaycheckValidator.Validate(pc, payDate, 7.0 * 20.05);
     }
+
+    [Test]
+    public void Test_PaySingleHourlyEmployee_OnTwoPayPeriods()
+    {
+        int id = 27;
+        AddHourlyEmployee t = new(id, "Mary", "Home", 21.15);
+        DateTime currentPayDate = new(2001, 11, 9),
+            previousPayDate = new(2001, 11, 2);
+        TimeCardTransaction tc1 = new(id, currentPayDate, 2.0);
+        TimeCardTransaction tc2 = new(id, previousPayDate, 5.0);
+        PaydayTransaction pt = new(currentPayDate);
+        
+        t.Execute();
+        tc1.Execute();
+        tc2.Execute();
+        pt.Execute();
+        var pc = pt.GetPaycheck(id);
+        
+        PaycheckValidator.Validate(pc, currentPayDate, 2.0 * 21.15);
+    }
 }
