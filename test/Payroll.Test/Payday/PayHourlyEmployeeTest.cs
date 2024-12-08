@@ -73,4 +73,23 @@ public class PayHourlyEmployeeTest
         
         Assert.That(pc, Is.Null);
     }
+
+    [Test]
+    public void Test_PaySingleHourlyEmployee_TwoTimeCards()
+    {
+        int id = 26;
+        AddHourlyEmployee t = new(id, "Erick", "Home", 20.05);
+        DateTime payDate = new(2001, 11, 9);
+        TimeCardTransaction tc1 = new(id, payDate, 2.0);
+        TimeCardTransaction tc2 = new(id, payDate.AddDays(-1), 5.0);
+        PaydayTransaction pt = new(payDate);
+        
+        t.Execute();
+        tc1.Execute();
+        tc2.Execute();
+        pt.Execute();
+        var pc = pt.GetPaycheck(id);
+        
+        PaycheckValidator.Validate(pc, payDate, 7.0 * 20.05);
+    }
 }
