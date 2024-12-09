@@ -14,8 +14,14 @@ public class HourlyClassification(double hourlyRate) : IPaymentClassification
     public TimeCard? GetTimeCard(DateTime date)
         => TimeCards.FirstOrDefault(t => t.Date == date);
 
-    public double CalculatePay(Paycheck paycheck) 
-        => TimeCards.Sum(CalculatePayForTimeCard);
+    public double CalculatePay(Paycheck paycheck)
+    {
+        var currentTimeCards = from cards in TimeCards
+            where IsCurrentPaymentPeriod(paycheck.PayDate, cards.Date)
+            select cards;
+
+        return currentTimeCards.Sum(CalculatePayForTimeCard);
+    }
 
     private double CalculatePayForTimeCard(TimeCard card)
     {
@@ -25,4 +31,7 @@ public class HourlyClassification(double hourlyRate) : IPaymentClassification
         return normal * HourlyRate +
                overtime * 1.5 * HourlyRate;
     }
+
+    private static bool IsCurrentPaymentPeriod(DateTime payDate, DateTime date)
+        => date >= payDate.AddDays(-5) && date <= payDate;
 }
