@@ -1,4 +1,5 @@
 using Payroll.Core.Contracts;
+using Payroll.Application.Extensions;
 
 namespace Payroll.Application.Contracts.Schedules;
 
@@ -11,5 +12,5 @@ public class BiweeklySchedule : IPaymentSchedule
         => date.DayOfWeek == DayOfWeek.Friday;
 
     private static bool IsBiweeklyDay(DateTime date)
-        => date.AddDays(-11).DayOfWeek == DayOfWeek.Monday;
+        => date.WeekOfMonth() == 1 || date.WeekOfMonth() == 3;
 }
