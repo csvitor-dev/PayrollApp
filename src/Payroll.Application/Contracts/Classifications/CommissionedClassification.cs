@@ -15,5 +15,8 @@ public class CommissionedClassification(double salary, double commissionRate) : 
         => SalesReceipts.FirstOrDefault(s => s.Date == date);
 
     public double CalculatePay(Paycheck paycheck)
-        => Salary;
+        => Salary + CalculateCommission();
+
+    private double CalculateCommission() 
+        => SalesReceipts.Sum(s => s.Amount * CommissionRate);
 }
