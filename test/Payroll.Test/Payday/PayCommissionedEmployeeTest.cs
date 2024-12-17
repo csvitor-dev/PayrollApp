@@ -14,11 +14,11 @@ public class PayCommissionedEmployeeTest
         AddCommissionedEmployee t = new(id, "Philips", "Home", 1000.0, 2.5);
         DateTime payDate = new(2001, 11, 9);
         PaydayTransaction pt = new(payDate);
-        
+
         t.Execute();
         pt.Execute();
         var pc = pt.GetPaycheck(id);
-        
+
         PaycheckValidator.Validate(pc, payDate, 1000.0);
     }
 
@@ -30,12 +30,29 @@ public class PayCommissionedEmployeeTest
         DateTime payDate = new(2001, 11, 9);
         SalesReceiptTransaction srt = new(id, payDate, 250.5);
         PaydayTransaction pt = new(payDate);
-        
+
         t.Execute();
         srt.Execute();
         pt.Execute();
         var pc = pt.GetPaycheck(id);
-        
+
         PaycheckValidator.Validate(pc, payDate, 1575.0 + 1.2 * 250.5);
+    }
+
+    [Test]
+    public void Test_PaySingleCommissionedEmployee_OnWrongDate()
+    {
+        int id = 30;
+        AddCommissionedEmployee t = new(id, "Aaron", "Home", 1205.0, 3.5);
+        DateTime payDate = new(2001, 11, 4);
+        SalesReceiptTransaction srt = new(id, payDate, 300.5);
+        PaydayTransaction pt = new(payDate);
+
+        t.Execute();
+        srt.Execute();
+        pt.Execute();
+        var pc = pt.GetPaycheck(id);
+
+        Assert.That(pc, Is.Null);
     }
 }
