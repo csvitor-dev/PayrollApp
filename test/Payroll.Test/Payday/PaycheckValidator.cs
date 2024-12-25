@@ -13,7 +13,7 @@ public static class PaycheckValidator
         Assert.Multiple(() =>
         {
             Assert.That(paycheck.PayDate, Is.EqualTo(payDate));
-            Assert.That(paycheck.GrossPay, Is.EqualTo(pay));
+            Assert.That(paycheck.GrossPay, Is.EqualTo(pay + deductions));
             Assert.That(paycheck.GetField("Disposition"), Is.EqualTo("Hold"));
             Assert.That(paycheck.Deductions, Is.EqualTo(deductions));
             Assert.That(paycheck.NetPay, Is.EqualTo(pay));
