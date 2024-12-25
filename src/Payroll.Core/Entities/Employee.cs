@@ -15,6 +15,9 @@ public class Employee(int id, string name, string address)
     public bool IsPayDate(DateTime date)
         => Schedule.IsPayDate(date);
 
+    public DateTime GetPayPeriodStartDate(DateTime date)
+        => Schedule.GetPayPeriodStartDate(date);
+
     public void Payday(Paycheck paycheck)
     {
         var grossPay = Classification.CalculatePay(paycheck);
