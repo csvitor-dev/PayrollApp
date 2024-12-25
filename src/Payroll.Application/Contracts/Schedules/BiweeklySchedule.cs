@@ -7,7 +7,10 @@ public class BiweeklySchedule : IPaymentSchedule
 {
     public bool IsPayDate(DateTime date)
         => IsFriday(date) && IsBiweeklyDay(date);
-    
+
+    public DateTime GetPayPeriodStartDate(DateTime date)
+        => default;
+
     private static bool IsFriday(DateTime date)
         => date.DayOfWeek == DayOfWeek.Friday;
 
