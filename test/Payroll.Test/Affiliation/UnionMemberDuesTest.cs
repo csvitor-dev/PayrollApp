@@ -23,6 +23,6 @@ public class UnionMemberDuesTest
         pt.Execute();
         var pc = pt.GetPaycheck(empId);
         
-        PaycheckValidator.Validate(pc, payDate, /* ??? */, 1522.59 /* -  ??? */);
+        PaycheckValidator.Validate(pc, payDate, 5 * 9.42, 1522.59 - 5 * 9.42);
     }
 }
