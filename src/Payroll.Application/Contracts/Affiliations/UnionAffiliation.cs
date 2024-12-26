@@ -26,9 +26,9 @@ public class UnionAffiliation : IAffiliation
     
     public double CalculateDeductions(Paycheck paycheck)
     {
-        int fridays = NumberOfFridaysInPayPeriod(paycheck.StartDate, paycheck.PayDate);
+        var fridays = NumberOfFridaysInPayPeriod(paycheck.StartDate, paycheck.PayDate);
         
-        return Dues * fridays;
+        return Dues * fridays + _charges.Sum(c => c.Amount);
     }
 
     private static int NumberOfFridaysInPayPeriod(DateTime start, DateTime end)
