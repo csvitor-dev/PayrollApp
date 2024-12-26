@@ -8,5 +8,5 @@ public class WeeklySchedule : IPaymentSchedule
         => date.DayOfWeek == DayOfWeek.Friday;
 
     public DateTime GetPayPeriodStartDate(DateTime date)
-        => default;
+        => date.AddDays(-4);
 }
