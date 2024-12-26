@@ -29,7 +29,7 @@ public class UnionMemberDuesTest
     }
 
     [Test]
-    public void HourlyUnionMemberServiceCharge()
+    public void Test_HourlyUnionMember_WithOneServiceCharge()
     {
         int empId = 34;
         int memId = 7735;
@@ -48,5 +48,34 @@ public class UnionMemberDuesTest
         var pc = pt.GetPaycheck(empId);
         
         PaycheckValidator.Validate(pc, payDate, 9.42 + 19.42, 8 * 15.24 - (9.42 + 19.42));
+    }
+    
+    [Test]
+    public void Test_CommissionedUnionMember_WithServiceCharges_OnMultiplePayPeriods()
+    {
+        int empId = 35;
+        int memId = 7736;
+        DateTime earlyPayDate = new(2001, 11, 2);
+        DateTime payDate = new(2001, 11, 9);
+        DateTime latePayDate = new(2001, 11, 16);
+        AddCommissionedEmployee t = new(empId, "Frank", "Home", 1250.15, 12.1);
+        SalesReceiptTransaction srt = new(empId, earlyPayDate, 315.7);
+        ChangeMemberTransaction cmt = new(empId, memId, 9.42);
+        ServiceChargeTransaction sct1 = new(memId, earlyPayDate, 20.15);
+        ServiceChargeTransaction sct2 = new(memId, payDate, 100.0);
+        ServiceChargeTransaction sct3 = new(memId, latePayDate, 200.0);
+        PaydayTransaction pt = new(payDate);
+        
+        t.Execute();
+        srt.Execute();
+        cmt.Execute();
+        sct1.Execute();
+        sct2.Execute();
+        sct3.Execute();
+        pt.Execute();
+        var pc = pt.GetPaycheck(empId);
+        
+        PaycheckValidator.Validate(pc, payDate,
+            2 * 9.42 + 20.15 + 100.0, 1250.15 + 12.1 * 315.7 - (2 * 9.42 + 20.15 + 100.0));
     }
 }
