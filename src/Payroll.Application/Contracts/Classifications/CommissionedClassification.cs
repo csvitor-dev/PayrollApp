@@ -1,3 +1,4 @@
+using Payroll.Application.Extensions;
 using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 
@@ -16,19 +17,16 @@ public class CommissionedClassification(double salary, double commissionRate) : 
         => SalesReceipts.FirstOrDefault(s => s.Date == date);
 
     public double CalculatePay(Paycheck paycheck)
-        => Salary + CalculateCommission(paycheck.PayDate);
+        => Salary + CalculateCommission(paycheck);
 
-    private double CalculateCommission(DateTime payDate)
+    private double CalculateCommission(Paycheck paycheck)
     {
         var salesReceiptInPeriod = from sales in SalesReceipts
-            where IsCurrentPaymentPeriod(payDate, sales.Date)
+            where sales.Date.IsInPayPeriod(paycheck)
             select sales;
         
         return salesReceiptInPeriod.Sum(CalculatePayForSalesReceipt);
     }
-
-    private static bool IsCurrentPaymentPeriod(DateTime payDate, DateTime date)
-        => date > payDate.AddDays(-12) && date <= payDate;
     
     private double CalculatePayForSalesReceipt(SalesReceipt sales)
         => sales.Amount * CommissionRate;

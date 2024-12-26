@@ -2,7 +2,6 @@ using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Assets;
 using Payroll.Application.Transactions.Change.Affiliation;
 using Payroll.Application.Transactions.Payday;
-using Payroll.Core.Entities;
 using Payroll.Test.Payday;
 
 namespace Payroll.Test.Affiliation;

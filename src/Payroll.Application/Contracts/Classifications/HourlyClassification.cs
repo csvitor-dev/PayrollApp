@@ -1,3 +1,4 @@
+using Payroll.Application.Extensions;
 using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 
@@ -17,7 +18,7 @@ public class HourlyClassification(double hourlyRate) : IPaymentClassification
     public double CalculatePay(Paycheck paycheck)
     {
         var currentTimeCards = from cards in TimeCards
-            where IsCurrentPaymentPeriod(paycheck.PayDate, cards.Date)
+            where cards.Date.IsInPayPeriod(paycheck)
             select cards;
 
         return currentTimeCards.Sum(CalculatePayForTimeCard);
@@ -31,7 +32,4 @@ public class HourlyClassification(double hourlyRate) : IPaymentClassification
         return normal * HourlyRate +
                overtime * 1.5 * HourlyRate;
     }
-
-    private static bool IsCurrentPaymentPeriod(DateTime payDate, DateTime date)
-        => date >= payDate.AddDays(-5) && date <= payDate;
 }
