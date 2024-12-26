@@ -2,9 +2,8 @@ using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Assets;
 using Payroll.Application.Transactions.Change.Affiliation;
 using Payroll.Application.Transactions.Payday;
-using Payroll.Test.Payday;
 
-namespace Payroll.Test.Affiliation;
+namespace Payroll.Test.Payday.Affiliation;
 
 [TestFixture]
 public class UnionMemberDuesTest
