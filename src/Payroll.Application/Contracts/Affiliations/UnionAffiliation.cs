@@ -1,3 +1,4 @@
+using Payroll.Application.Extensions;
 using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 
@@ -27,8 +28,11 @@ public class UnionAffiliation : IAffiliation
     public double CalculateDeductions(Paycheck paycheck)
     {
         var fridays = NumberOfFridaysInPayPeriod(paycheck.StartDate, paycheck.PayDate);
+        var chargesAmountInPeriod = from charges in _charges
+            where charges.Date.IsInPayPeriod(paycheck)
+            select charges.Amount;
         
-        return Dues * fridays + _charges.Sum(c => c.Amount);
+        return Dues * fridays + chargesAmountInPeriod.Sum();
     }
 
     private static int NumberOfFridaysInPayPeriod(DateTime start, DateTime end)
