@@ -34,24 +34,20 @@ public class AddTransactionTest
     [Test]
     public void Test_AddHourlyEmployee()
     {
-        int id = 2;
-        AddHourlyEmployee t = new(id, "Carl", "Home", 5.5);
+        var (t, expected) = EmployeeMockFactory.CreateHourlyMock();
         t.Execute();
 
-        Employee e = PayrollDb.GetEmployee(id)!;
-        Assert.That(e.Name, Is.EqualTo("Carl"));
-
-        IPaymentClassification pc = e.Classification;
+        var e = PayrollDb.GetEmployee(expected.Id);
+        var pc = e?.Classification;
+        var hc = pc as HourlyClassification;
+        var ps = e?.Schedule;
+        var pm = e?.Method;
+        
+        Assert.That(e?.Name, Is.EqualTo(expected.Name));
         Assert.That(pc is HourlyClassification, Is.True);
-
-        HourlyClassification hc = (pc as HourlyClassification)!;
-        Assert.That(hc.HourlyRate, Is.EqualTo(5.5));
-        Assert.That(hc.TimeCards.Count, Is.EqualTo(0));
-
-        IPaymentSchedule ps = e.Schedule;
+        Assert.That(hc?.HourlyRate, Is.EqualTo(expected.HourlyRate));
+        Assert.That(hc?.TimeCards.Count, Is.EqualTo(0));
         Assert.That(ps is WeeklySchedule, Is.True);
-
-        IPaymentMethod pm = e.Method;
         Assert.That(pm is HoldMethod, Is.True);
     }
 
