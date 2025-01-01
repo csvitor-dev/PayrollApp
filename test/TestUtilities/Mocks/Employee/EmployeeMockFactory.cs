@@ -7,10 +7,11 @@ namespace TestUtilities.Mocks.Employee;
 public static class EmployeeMockFactory
 {
     private static readonly Faker Faker = new();
-
+    private static int MaxId { get; set; } = Faker.Random.Number(1, 1_000);
+	
     private static (int, string, string) GetTransactionBaseData()
     {
-        var id = Faker.Random.Number(1, 100);
+        var id = MaxId++;
         var name = Faker.Name.FirstName();
         var address = "Home";
 
