@@ -42,4 +42,18 @@ public static class EmployeeMockFactory
 
         return (transaction, new(id, name, address, rate));
     }
+
+    public static (AddCommissionedEmployee, ExpectedCommissioned) CreateCommissionedMock()
+    {
+        var fake = new Faker<AddCommissionedEmployee>();
+
+        var (id, name, address) = GetTransactionBaseData();
+        var salary = Convert.ToDouble(Faker.Finance.Amount(1000.0m, 2500.0m));
+        var rate = Convert.ToDouble(Faker.Finance.Amount(1.0m, 100.0m));
+
+        var transaction = fake.CustomInstantiator(_ =>
+            new AddCommissionedEmployee(id, name, address, salary, rate));
+
+        return (transaction, new(id, name, address, salary, rate));
+    }
 }
