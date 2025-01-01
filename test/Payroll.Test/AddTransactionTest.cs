@@ -2,10 +2,10 @@ using Payroll.Application.Transactions.Add;
 using Payroll.Application.Contracts.Classifications;
 using Payroll.Application.Contracts.Methods;
 using Payroll.Application.Contracts.Schedules;
-
 using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 using Payroll.Core.Data;
+using TestUtilities.Mocks.Employee;
 
 namespace Payroll.Test;
 
@@ -15,23 +15,19 @@ public class AddTransactionTest
     [Test]
     public void Test_AddSalariedEmployee()
     {
-        int id = 1;
-        AddSalariedEmployee t = new(id, "Bob", "Home", 1000.00);
+        var (t, expected) = EmployeeMockFactory.CreateSalariedMock();
+
         t.Execute();
+        var e = PayrollDb.GetEmployee(expected.Id);
+        var pc = e?.Classification;
+        var sc = pc as SalariedClassification;
+        var ps = e?.Schedule;
+        var pm = e?.Method;
 
-        Employee e = PayrollDb.GetEmployee(id)!;
-        Assert.That(e.Name, Is.EqualTo("Bob"));
-
-        IPaymentClassification pc = e.Classification;
+        Assert.That(e?.Name, Is.EqualTo(expected.Name));
         Assert.That(pc is SalariedClassification, Is.True);
-
-        SalariedClassification sc = (pc as SalariedClassification)!;
-        Assert.That(sc.Salary, Is.EqualTo(1000.00));
-        
-        IPaymentSchedule ps = e.Schedule;
+        Assert.That(sc?.Salary, Is.EqualTo(expected.Salary));
         Assert.That(ps is MonthlySchedule, Is.True);
-
-        IPaymentMethod pm = e.Method;
         Assert.That(pm is HoldMethod, Is.True);
     }
 
