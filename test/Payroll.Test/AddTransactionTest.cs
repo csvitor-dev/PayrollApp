@@ -12,60 +12,63 @@ public class AddTransactionTest
     [Test]
     public void Test_AddSalariedEmployee()
     {
-        var (t, expected) = EmployeeMockFactory.CreateSalariedMock();
+        var (transaction, expected) = EmployeeMockFactory.CreateSalariedMock();
 
-        t.Execute();
-        var e = PayrollDb.GetEmployee(expected.Id);
-        var pc = e?.Classification;
-        var sc = pc as SalariedClassification;
-        var ps = e?.Schedule;
-        var pm = e?.Method;
+        transaction.Execute();
+        var employee = PayrollDb.GetEmployee(expected.Id);
+        var classification = employee?.Classification;
+        var salaried = classification as SalariedClassification;
+        var schedule = employee?.Schedule;
+        var method = employee?.Method;
 
-        Assert.That(e?.Name, Is.EqualTo(expected.Name));
-        Assert.That(pc is SalariedClassification, Is.True);
-        Assert.That(sc?.Salary, Is.EqualTo(expected.Salary));
-        Assert.That(ps is MonthlySchedule, Is.True);
-        Assert.That(pm is HoldMethod, Is.True);
+        Assert.That(employee, Is.Not.Null);
+        Assert.That(employee.Name, Is.EqualTo(expected.Name));
+        Assert.That(classification is SalariedClassification, Is.True);
+        Assert.That(salaried?.Salary, Is.EqualTo(expected.Salary));
+        Assert.That(schedule is MonthlySchedule, Is.True);
+        Assert.That(method is HoldMethod, Is.True);
     }
 
     [Test]
     public void Test_AddHourlyEmployee()
     {
-        var (t, expected) = EmployeeMockFactory.CreateHourlyMock();
-        t.Execute();
+        var (transaction, expected) = EmployeeMockFactory.CreateHourlyMock();
 
-        var e = PayrollDb.GetEmployee(expected.Id);
-        var pc = e?.Classification;
-        var hc = pc as HourlyClassification;
-        var ps = e?.Schedule;
-        var pm = e?.Method;
-
-        Assert.That(e?.Name, Is.EqualTo(expected.Name));
-        Assert.That(pc is HourlyClassification, Is.True);
-        Assert.That(hc?.HourlyRate, Is.EqualTo(expected.HourlyRate));
-        Assert.That(hc?.TimeCards, Is.Empty);
-        Assert.That(ps is WeeklySchedule, Is.True);
-        Assert.That(pm is HoldMethod, Is.True);
+        transaction.Execute();
+        var employee = PayrollDb.GetEmployee(expected.Id);
+        var classification = employee?.Classification;
+        var hourly = classification as HourlyClassification;
+        var schedule = employee?.Schedule;
+        var method = employee?.Method;
+        
+        Assert.That(employee, Is.Not.Null);
+        Assert.That(employee?.Name, Is.EqualTo(expected.Name));
+        Assert.That(classification is HourlyClassification, Is.True);
+        Assert.That(hourly?.HourlyRate, Is.EqualTo(expected.HourlyRate));
+        Assert.That(hourly?.TimeCards, Is.Empty);
+        Assert.That(schedule is WeeklySchedule, Is.True);
+        Assert.That(method is HoldMethod, Is.True);
     }
 
     [Test]
     public void Test_AddCommissionedEmployee()
     {
-        var (t, expected) = EmployeeMockFactory.CreateCommissionedMock();
+        var (transaction, expected) = EmployeeMockFactory.CreateCommissionedMock();
 
-        t.Execute();
-        var e = PayrollDb.GetEmployee(expected.Id);
-        var pc = e?.Classification;
-        var cc = pc as CommissionedClassification;
-        var ps = e?.Schedule;
-        var pm = e?.Method;
+        transaction.Execute();
+        var employee = PayrollDb.GetEmployee(expected.Id);
+        var classification = employee?.Classification;
+        var commissioned = classification as CommissionedClassification;
+        var schedule = employee?.Schedule;
+        var method = employee?.Method;
 
-        Assert.That(e?.Name, Is.EqualTo(expected.Name));
-        Assert.That(pc is CommissionedClassification, Is.True);
-        Assert.That(cc?.Salary, Is.EqualTo(expected.Salary));
-        Assert.That(cc?.CommissionRate, Is.EqualTo(expected.CommissionRate));
-        Assert.That(cc?.SalesReceipts, Is.Empty);
-        Assert.That(ps is BiweeklySchedule, Is.True);
-        Assert.That(pm is HoldMethod, Is.True);
+        Assert.That(employee, Is.Not.Null);
+        Assert.That(employee?.Name, Is.EqualTo(expected.Name));
+        Assert.That(classification is CommissionedClassification, Is.True);
+        Assert.That(commissioned?.Salary, Is.EqualTo(expected.Salary));
+        Assert.That(commissioned?.CommissionRate, Is.EqualTo(expected.CommissionRate));
+        Assert.That(commissioned?.SalesReceipts, Is.Empty);
+        Assert.That(schedule is BiweeklySchedule, Is.True);
+        Assert.That(method is HoldMethod, Is.True);
     }
 }

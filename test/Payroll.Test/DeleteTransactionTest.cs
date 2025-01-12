@@ -11,13 +11,13 @@ public class DeleteTransactionTest
     [Test]
     public void Test_DeleteEmployee()
     {
-        var (t, expected) = EmployeeMockFactory.CreateCommissionedMock();
-        var dt = new DeleteEmployeeTransaction(expected.Id);
+        var (addTransaction, expected) = EmployeeMockFactory.CreateCommissionedMock();
+        var deleteTransaction = new DeleteEmployeeTransaction(expected.Id);
         
-        t.Execute();
-        dt.Execute();
-        var e = PayrollDb.GetEmployee(expected.Id);
+        addTransaction.Execute();
+        deleteTransaction.Execute();
+        var employee = PayrollDb.GetEmployee(expected.Id);
         
-        Assert.That(e, Is.Null);
+        Assert.That(employee, Is.Null);
     }
 }
