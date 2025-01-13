@@ -1,6 +1,6 @@
 using Payroll.Application.Transactions.Delete;
 
-using Payroll.Core.Data;
+using Payroll.Infrastructure.Data;
 using TestUtilities.Mocks.Employee;
 
 namespace Payroll.Test;

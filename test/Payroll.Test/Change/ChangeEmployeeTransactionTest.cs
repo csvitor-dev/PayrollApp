@@ -1,7 +1,7 @@
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Change;
-using Payroll.Core.Data;
 using Payroll.Core.Entities;
+using Payroll.Infrastructure.Data;
 
 namespace Payroll.Test.Change;
 

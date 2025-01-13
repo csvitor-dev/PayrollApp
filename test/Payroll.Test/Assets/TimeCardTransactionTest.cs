@@ -1,9 +1,9 @@
+using Payroll.Application.Contracts.Classifications;
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Assets;
-using Payroll.Application.Contracts.Classifications;
 using Payroll.Core.Contracts;
-using Payroll.Core.Data;
 using Payroll.Core.Entities;
+using Payroll.Infrastructure.Data;
 
 namespace Payroll.Test.Assets;
 

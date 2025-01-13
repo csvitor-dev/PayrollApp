@@ -1,7 +1,7 @@
 using Payroll.Application.Contracts.Classifications;
 using Payroll.Application.Contracts.Methods;
 using Payroll.Application.Contracts.Schedules;
-using Payroll.Core.Data;
+using Payroll.Infrastructure.Data;
 using TestUtilities.Mocks.Employee;
 
 namespace Payroll.Test;

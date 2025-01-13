@@ -1,9 +1,8 @@
 using Payroll.Application.Contracts.Affiliations;
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Assets;
-using Payroll.Application.Transactions.Delete;
-using Payroll.Core.Data;
 using Payroll.Core.Entities;
+using Payroll.Infrastructure.Data;
 
 namespace Payroll.Test.Assets;
 

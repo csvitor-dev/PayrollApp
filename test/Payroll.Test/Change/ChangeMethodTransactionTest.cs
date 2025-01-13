@@ -1,10 +1,9 @@
-using Payroll.Application.Contracts.Classifications;
 using Payroll.Application.Contracts.Methods;
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Change.Method;
 using Payroll.Core.Contracts;
-using Payroll.Core.Data;
 using Payroll.Core.Entities;
+using Payroll.Infrastructure.Data;
 
 namespace Payroll.Test.Change;
 
