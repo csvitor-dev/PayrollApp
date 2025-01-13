@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Payroll.Application\Payroll.Application.csproj" />
-    <ProjectReference Include="..\..\src\Payroll.Core\Payroll.Core.csproj" />
+    <ProjectReference Include="..\..\Source\Payroll.Application\Payroll.Application.csproj" />
+    <ProjectReference Include="..\..\Source\Payroll.Core\Payroll.Core.csproj" />
     <ProjectReference Include="..\TestUtilities\TestUtilities.csproj" />
   </ItemGroup>
 
