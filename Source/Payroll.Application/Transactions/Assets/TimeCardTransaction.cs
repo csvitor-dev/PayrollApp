@@ -1,5 +1,5 @@
 using Payroll.Application.Contracts.Classifications;
-using Payroll.Core.Data;
+using Payroll.Infrastructure.Data;
 
 namespace Payroll.Application.Transactions.Assets;
 

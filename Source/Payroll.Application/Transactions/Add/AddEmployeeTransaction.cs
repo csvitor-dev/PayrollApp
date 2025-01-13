@@ -1,13 +1,12 @@
 using Payroll.Application.Contracts.Affiliations;
 using Payroll.Core.Contracts;
-using Payroll.Core.Data;
 using Payroll.Core.Entities;
-using Payroll.Application.Contracts.Classifications;
 using Payroll.Application.Contracts.Methods;
+using Payroll.Infrastructure.Data;
 
 namespace Payroll.Application.Transactions.Add;
 
-public abstract class AddEmployeeTransaction(int empID, string name, string address)
+public abstract class AddEmployeeTransaction(int empId, string name, string address)
     : ITransaction
 {
     protected abstract IPaymentClassification MakeClassification(); // FACTORY METHOD
@@ -20,7 +19,7 @@ public abstract class AddEmployeeTransaction(int empID, string name, string addr
         IPaymentMethod pm = new HoldMethod();
         IAffiliation aff = new NoAffiliation();
 
-        Employee e = new(empID, name, address)
+        Employee e = new(empId, name, address)
         {
             Affiliation = aff,
             Classification = pc,
@@ -28,6 +27,6 @@ public abstract class AddEmployeeTransaction(int empID, string name, string addr
             Method = pm
         };
 
-        PayrollDb.AddEmployee(empID, e);
+        PayrollDb.AddEmployee(empId, e);
     }
 }

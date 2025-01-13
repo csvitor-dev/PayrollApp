@@ -1,7 +1,7 @@
 using Payroll.Application.Contracts.Affiliations;
 using Payroll.Core.Contracts;
-using Payroll.Core.Data;
 using Payroll.Core.Entities;
+using Payroll.Infrastructure.Data;
 
 namespace Payroll.Application.Transactions.Change.Affiliation;
 

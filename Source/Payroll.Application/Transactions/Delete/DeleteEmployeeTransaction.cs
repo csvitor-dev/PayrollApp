@@ -1,4 +1,4 @@
-using Payroll.Core.Data;
+using Payroll.Infrastructure.Data;
 
 namespace Payroll.Application.Transactions.Delete;
 
