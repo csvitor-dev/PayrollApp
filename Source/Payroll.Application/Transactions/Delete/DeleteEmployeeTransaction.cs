@@ -1,3 +1,4 @@
+using Payroll.Core.Contracts;
 using Payroll.Infrastructure.Data;
 
 namespace Payroll.Application.Transactions.Delete;

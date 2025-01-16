@@ -1,4 +1,5 @@
 using Payroll.Application.Contracts.Affiliations;
+using Payroll.Core.Contracts;
 using Payroll.Infrastructure.Data;
 
 namespace Payroll.Application.Transactions.Assets;
