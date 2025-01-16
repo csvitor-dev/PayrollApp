@@ -1,4 +1,4 @@
-namespace Payroll.Application.Transactions;
+namespace Payroll.Core.Contracts;
 
 /// <summary>
 /// Represents a transaction of command line
