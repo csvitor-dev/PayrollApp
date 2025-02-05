@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Payroll.Affiliations\Payroll.Affiliations.csproj" />
+      <ProjectReference Include="..\Payroll.Core\Payroll.Core.csproj" />
+      <ProjectReference Include="..\Payroll.Infrastructure\Payroll.Infrastructure.csproj" />
+      <ProjectReference Include="..\Payroll.Methods\Payroll.Methods.csproj" />
+    </ItemGroup>
+
+</Project>
