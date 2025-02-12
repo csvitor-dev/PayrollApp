@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Payroll.Core\Payroll.Core.csproj" />
     <ProjectReference Include="..\Payroll.Infrastructure\Payroll.Infrastructure.csproj" />
+    <ProjectReference Include="..\Payroll.Transactions\Payroll.Transactions.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,5 +1,5 @@
-using Methods.Contracts;
-using Payroll.Affiliations.Contracts;
+using Payroll.Application.Contracts.Affiliations;
+using Payroll.Application.Contracts.Methods;
 using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 using Payroll.Infrastructure.Data;

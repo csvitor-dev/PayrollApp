@@ -7,10 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Payroll.Affiliations\Payroll.Affiliations.csproj" />
+      <ProjectReference Include="..\Payroll.Application\Payroll.Application.csproj" />
       <ProjectReference Include="..\Payroll.Core\Payroll.Core.csproj" />
       <ProjectReference Include="..\Payroll.Infrastructure\Payroll.Infrastructure.csproj" />
-      <ProjectReference Include="..\Payroll.Methods\Payroll.Methods.csproj" />
     </ItemGroup>
 
 </Project>

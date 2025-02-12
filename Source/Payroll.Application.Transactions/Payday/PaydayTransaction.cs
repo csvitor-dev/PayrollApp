@@ -2,7 +2,7 @@ using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 using Payroll.Infrastructure.Data;
 
-namespace Payroll.Application.Payday;
+namespace Payroll.Application.Transactions.Payday;
 
 public class PaydayTransaction(DateTime payDate) : ITransaction
 {
