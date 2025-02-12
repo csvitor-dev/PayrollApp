@@ -1,6 +1,6 @@
 using Payroll.Application.Contracts.Affiliations;
 using Payroll.Application.Transactions.Add;
-using Payroll.Application.Transactions.Change.Affiliation;
+using Payroll.Application.Transactions.Change.Affiliations;
 using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 using Payroll.Infrastructure.Data;

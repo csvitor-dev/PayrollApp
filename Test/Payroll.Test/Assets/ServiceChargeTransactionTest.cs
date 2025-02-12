@@ -1,3 +1,4 @@
+using Payroll.Application.Assets;
 using Payroll.Application.Contracts.Affiliations;
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Assets;

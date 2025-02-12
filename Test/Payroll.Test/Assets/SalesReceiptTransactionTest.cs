@@ -1,7 +1,7 @@
+using Payroll.Application.Assets;
 using Payroll.Application.Contracts.Classifications;
 using Payroll.Application.Transactions.Add;
 using Payroll.Application.Transactions.Assets;
-
 using Payroll.Core.Contracts;
 using Payroll.Core.Entities;
 using Payroll.Infrastructure.Data;

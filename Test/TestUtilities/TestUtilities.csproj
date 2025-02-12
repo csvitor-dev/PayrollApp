@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Source\Payroll.Application\Payroll.Application.csproj" />
+      <ProjectReference Include="..\..\Source\Payroll.Application.Transactions\Payroll.Application.Transactions.csproj" />
       <ProjectReference Include="..\..\Source\Payroll.Core\Payroll.Core.csproj" />
     </ItemGroup>
 
